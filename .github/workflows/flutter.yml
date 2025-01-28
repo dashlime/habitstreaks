@@ -2,9 +2,9 @@ name: flutter
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "main", "dev" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -16,7 +16,6 @@ jobs:
 
       - name: Install packages
         run: flutter pub get
-      - name: Run generator
-        run: flutter pub run build_runner build
+
       - name: Run tests
         run: flutter test test/
