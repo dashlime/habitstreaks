@@ -12,10 +12,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
       - uses: subosito/flutter-action@v2
 
       - name: Install packages
         run: flutter pub get
 
       - name: Run tests
-        run: flutter test test/
+        run: flutter test --coverage test/
+        
+      - name: Upload coverage reports to Codecov
+          uses: codecov/codecov-action@v5
+          with:
+            token: ${{ secrets.CODECOV_TOKEN }}
