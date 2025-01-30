@@ -5,6 +5,7 @@ import 'package:habitstreaks/view/habits/habits_view.dart';
 import 'package:habitstreaks/view/stats/stats_view.dart';
 import 'package:habitstreaks/view/theme/colors.dart';
 import 'package:habitstreaks/view/theme/custom_icons.dart';
+import 'package:habitstreaks/view/theme/fonts.dart';
 
 late Database database;
 
@@ -23,6 +24,8 @@ class MyApp extends StatelessWidget {
         title: 'HabitStreaks',
         theme: ThemeData(
           useMaterial3: true,
+          fontFamily: "Rubik",
+          textTheme: textTheme,
           colorScheme: colorScheme,
         ),
         home: HomePage(),
@@ -51,7 +54,7 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text((_selectedBottomNavIndex == 0) ? 'Habits' : 'Stats'),
+        title: Text((_selectedBottomNavIndex == 0) ? 'Habits' : 'Stats', style: Theme.of(context).textTheme.titleLarge),
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -94,7 +97,7 @@ class HomePageState extends State<HomePage> {
             ListTile(
               selected: true,
               leading: const Icon(UiIcons.icHomeOutlined),
-              title: const Text("Home"),
+              title: Text("Home", style: Theme.of(context).textTheme.labelLarge),
               onTap: () {
                 Navigator.pop(context);
               },

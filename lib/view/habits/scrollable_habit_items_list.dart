@@ -5,6 +5,7 @@ import 'package:habitstreaks/models/habit.dart';
 import 'package:habitstreaks/controllers/habit_items_utility.dart';
 import 'package:habitstreaks/view/dialogs/update_duration_dialog.dart';
 import 'package:habitstreaks/view/dialogs/update_reps_dialog.dart';
+import 'package:habitstreaks/view/theme/colors.dart';
 import 'package:habitstreaks/view/widgets/habit_day_item_widgets.dart';
 import 'package:intl/intl.dart';
 
@@ -72,8 +73,8 @@ class ScrollableHabitItemsListState extends State<ScrollableHabitItemsList> {
               width: 50,
               child: Column(
                 children: [
-                  Text(DateFormat.E().format(date).toUpperCase()),
-                  Text(date.day.toString()),
+                  Text(DateFormat.E().format(date).toUpperCase(), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: UiColors.grayText)),
+                  Text(date.day.toString(), style: Theme.of(context).textTheme.labelMedium),
                   SizedBox(height: 10),
                   if (score < 1)
                     NotCompletedHabitDayItem(completedRate: score, color: widget.habit.habit.color)
