@@ -49,6 +49,19 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text((_selectedBottomNavIndex == 0) ? 'Habits' : 'Stats'),
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+      ),
       body: screens.elementAt(_selectedBottomNavIndex),
       floatingActionButton: (_selectedBottomNavIndex == 0) ? FloatingActionButton(
         onPressed: _showAddHabitDialog,
@@ -71,6 +84,22 @@ class HomePageState extends State<HomePage> {
             _selectedBottomNavIndex = item;
           });
         },
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(child: Text("HabitStreaks")),
+            ListTile(
+              selected: true,
+              leading: const Icon(UiIcons.icHomeOutlined),
+              title: const Text("Home"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
