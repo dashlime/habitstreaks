@@ -5,7 +5,7 @@ import 'package:habitstreaks/main.dart';
 import 'package:habitstreaks/models/habit.dart';
 import 'package:habitstreaks/view/habits/extended_habit_box.dart';
 
-class AllHabitsViewState extends State<AllHabitsView> {
+class HabitsViewState extends State<HabitsView> {
   List<HabitWithItems> habits = List.empty();
   late StreamSubscription<List<HabitWithItems>> subscription;
 
@@ -32,16 +32,38 @@ class AllHabitsViewState extends State<AllHabitsView> {
     if (habits.isEmpty) {
       return Text("You haven't created any habits yet ... Click the \"+\" button below to create an habit");
     } else {
-      return Column(children: [
-        for (var habit in habits) ExtendedHabitBox(habit: habit)
-      ]);
+      return DefaultTabController(
+        length: 2, 
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            TabBar(tabs: [
+              Tab(text: "Overall"),
+              Tab(text: "Today")
+            ]),
+            Expanded(
+              child: TabBarView(
+                physics: NeverScrollableScrollPhysics(), 
+                children: [
+                  ListView(
+                    children: [
+                      for (var habit in habits) ExtendedHabitBox(habit: habit)
+                    ]
+                  ),
+                  Text("Today view - WIP")
+                ]
+              )
+            )
+          ]
+        )
+      );
     }
   }
 }
 
-class AllHabitsView extends StatefulWidget {
-  const AllHabitsView({super.key});
+class HabitsView extends StatefulWidget {
+  const HabitsView({super.key});
 
   @override
-  State<AllHabitsView> createState() => AllHabitsViewState();
+  State<HabitsView> createState() => HabitsViewState();
 }
