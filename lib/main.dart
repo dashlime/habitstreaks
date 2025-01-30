@@ -3,7 +3,8 @@ import 'package:habitstreaks/services/database.dart';
 import 'package:habitstreaks/view/dialogs/add_habit_dialog.dart';
 import 'package:habitstreaks/view/habits/habits_view.dart';
 import 'package:habitstreaks/view/stats/stats_view.dart';
-import 'package:habitstreaks/view/utilities/custom_icons.dart';
+import 'package:habitstreaks/view/theme/colors.dart';
+import 'package:habitstreaks/view/theme/custom_icons.dart';
 
 late Database database;
 
@@ -19,10 +20,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Namer App',
+        title: 'HabitStreaks',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: colorScheme,
         ),
         home: HomePage(),
       );
