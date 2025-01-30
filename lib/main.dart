@@ -50,10 +50,10 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: screens.elementAt(_selectedBottomNavIndex),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: (_selectedBottomNavIndex == 0) ? FloatingActionButton(
         onPressed: _showAddHabitDialog,
         child: const Icon(Icons.add),
-      ),
+      ) : null,
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
