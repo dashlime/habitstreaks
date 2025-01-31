@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:habitstreaks/main.dart';
 import 'package:habitstreaks/models/habit.dart';
 import 'package:habitstreaks/view/habits/extended_habit_box.dart';
+import 'package:habitstreaks/view/theme/colors.dart';
 
 class HabitsViewState extends State<HabitsView> {
   List<HabitWithItems> habits = List.empty();
@@ -36,11 +37,41 @@ class HabitsViewState extends State<HabitsView> {
         length: 2, 
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TabBar(tabs: [
-              Tab(text: "Overall"),
-              Tab(text: "Today")
-            ]),
+            TabBar(
+              tabAlignment: TabAlignment.start,
+              isScrollable: true,
+              padding: EdgeInsets.all(8),
+              indicator: BoxDecoration(
+                color: UiColors.background, // Selected tab background
+                borderRadius: BorderRadius.circular(30),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Color(0x0F000000),
+                      blurRadius: 4,
+                      spreadRadius: 2,
+                      offset: Offset(1, 1)
+                  )
+                ],
+              ),
+              indicatorSize: TabBarIndicatorSize.label,
+              overlayColor: WidgetStatePropertyAll(Colors.transparent),
+              dividerHeight: 0,
+              labelPadding: EdgeInsets.symmetric(horizontal: 8),
+              labelColor: UiColors.text, // Selected text color
+              unselectedLabelColor: UiColors.grayText, // Unselected text color
+              tabs: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Tab(text: "Overall"),
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Tab(text: "Today"),
+                ),
+              ]
+            ),
             Expanded(
               child: TabBarView(
                 physics: NeverScrollableScrollPhysics(), 
