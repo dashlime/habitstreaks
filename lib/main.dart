@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:habitstreaks/services/database.dart';
 import 'package:habitstreaks/view/dialogs/add_habit_dialog.dart';
+import 'package:habitstreaks/view/effects/drop_shadow_effect.dart';
 import 'package:habitstreaks/view/habits/habits_view.dart';
 import 'package:habitstreaks/view/stats/stats_view.dart';
 import 'package:habitstreaks/view/theme/colors.dart';
 import 'package:habitstreaks/view/theme/custom_icons.dart';
 import 'package:habitstreaks/view/theme/fonts.dart';
+import 'package:intl/intl.dart';
 
 late Database database;
 
@@ -71,39 +73,77 @@ class HomePageState extends State<HomePage> {
         onPressed: _showAddHabitDialog,
         child: const Icon(Icons.add),
       ) : null,
-      bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(UiIcons.icHomeOutlined, size: 24),
-            label: "Habits"
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(UiIcons.icChart, size: 24),
-            label: "Stats"
-          )
-        ],
-        currentIndex: _selectedBottomNavIndex,
-        onTap: (item) {
-          setState(() {
-            _selectedBottomNavIndex = item;
-          });
-        },
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(child: Text("HabitStreaks")),
-            ListTile(
-              selected: true,
-              leading: const Icon(UiIcons.icHomeOutlined),
-              title: Text("Home", style: Theme.of(context).textTheme.labelLarge),
-              onTap: () {
-                Navigator.pop(context);
-              },
+      bottomNavigationBar: DropShadowEffect(
+        child: NavigationBar(
+          destinations: const<Widget> [
+            NavigationDestination(
+              icon: Icon(UiIcons.icHomeOutlined),
+              selectedIcon: Icon(UiIcons.icHomeFilled),
+              label: "Habits"
             ),
+            NavigationDestination(
+              icon: Icon(UiIcons.icChart),
+              label: "Stats"
+            )
           ],
-        ),
+          elevation: 10,
+          selectedIndex: _selectedBottomNavIndex,
+          onDestinationSelected: (item) {
+            setState(() {
+              _selectedBottomNavIndex = item;
+            });
+          },
+        )
+      ),
+      drawer: NavigationDrawer(
+        onDestinationSelected: (item) {
+          Navigator.pop(context);
+        },
+        selectedIndex: 0,
+        children: <Widget> [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                 Text(
+                  'HabitStreaks',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                SizedBox(height: 5),
+                Text(
+                  DateFormat.EEEE().format(DateTime.now()),
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
+                Text(
+                  DateFormat("d MMMM y").format(DateTime.now()),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ]
+            )
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(28, 5, 28, 5),
+            child: Divider(),
+          ),
+          NavigationDrawerDestination(
+            icon: const Icon(UiIcons.icHomeOutlined),
+            selectedIcon: const Icon(UiIcons.icHomeFilled),
+            label: Text("Home", style: Theme.of(context).textTheme.labelLarge),
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(28, 5, 28, 5),
+            child: Divider(),
+          ),
+          NavigationDrawerDestination(
+            icon: const Icon(UiIcons.icStarOutlined),
+            label: Text("Rate the app"),
+          ),
+          NavigationDrawerDestination(
+            icon: const Icon(Icons.share_outlined),
+            label: Text("Share the app"),
+          ),
+        ],
       ),
     );
   }
