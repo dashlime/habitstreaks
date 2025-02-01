@@ -29,6 +29,9 @@ class MyApp extends StatelessWidget {
           fontFamily: "Rubik",
           textTheme: textTheme,
           colorScheme: colorScheme,
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
+          )
         ),
         home: HomePage(),
       );

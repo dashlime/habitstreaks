@@ -38,8 +38,7 @@ class GradientOutlinedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Container(
+    return SizedBox(
       height: 40,
       child: OutlinedButton(
         onPressed: onPressed, 

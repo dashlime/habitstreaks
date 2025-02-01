@@ -29,6 +29,7 @@ const colorScheme = ColorScheme(
   secondaryContainer: UiColors.blue05,
   onSecondaryContainer: UiColors.text,
   error: UiColors.red50,
+  onErrorContainer: UiColors.red50,
   onError: Colors.white,
   outline: UiColors.outline,
   outlineVariant: Color(0xFFc4c6d0),
