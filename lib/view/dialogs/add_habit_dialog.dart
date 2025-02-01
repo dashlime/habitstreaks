@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitstreaks/controllers/add_habit_dialog_controller.dart';
 import 'package:habitstreaks/main.dart';
 import 'package:habitstreaks/view/utilities/duration_input_formatter.dart';
+import 'package:habitstreaks/view/widgets/buttons.dart';
 
 class AddHabitDialogState extends State<AddHabitDialog> {
   final controller = AddHabitDialogController();
@@ -117,13 +118,13 @@ class AddHabitDialogState extends State<AddHabitDialog> {
         ],
       ),
       actions: [
-        TextButton(
+        GradientOutlinedButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          text: 'Cancel',
         ),
-        TextButton(
+        GradientFilledButton(
           onPressed: () {
             var result = controller.saveToDatabase(database);
 
@@ -131,7 +132,7 @@ class AddHabitDialogState extends State<AddHabitDialog> {
               Navigator.of(context).pop();
             }
           },
-          child: Text('Submit'),
+          text: 'Submit',
         ),
       ],
     );

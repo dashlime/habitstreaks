@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitstreaks/controllers/input_checks.dart';
+import 'package:habitstreaks/view/widgets/buttons.dart';
 import 'package:intl/intl.dart';
 
 class UpdateRepsDialogState extends State<UpdateRepsDialog> {
@@ -48,13 +49,13 @@ class UpdateRepsDialogState extends State<UpdateRepsDialog> {
         ],
       ),
       actions: [
-        TextButton(
+        GradientOutlinedButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          text: 'Cancel',
         ),
-        TextButton(
+        GradientFilledButton(
           onPressed: () {
             check();
 
@@ -65,7 +66,7 @@ class UpdateRepsDialogState extends State<UpdateRepsDialog> {
               Navigator.of(context).pop();
             }
           },
-          child: Text('Submit'),
+          text: 'Submit',
         ),
       ],
     );

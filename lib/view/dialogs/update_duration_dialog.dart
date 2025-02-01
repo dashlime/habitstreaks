@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habitstreaks/controllers/input_checks.dart';
 import 'package:habitstreaks/view/utilities/converters.dart';
 import 'package:habitstreaks/view/utilities/duration_input_formatter.dart';
+import 'package:habitstreaks/view/widgets/buttons.dart';
 import 'package:intl/intl.dart';
 
 class UpdateDurationDialogState extends State<UpdateDurationDialog> {
@@ -53,13 +54,13 @@ class UpdateDurationDialogState extends State<UpdateDurationDialog> {
         ],
       ),
       actions: [
-        TextButton(
+        GradientOutlinedButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Cancel'),
+          text: 'Cancel',
         ),
-        TextButton(
+        GradientFilledButton(
           onPressed: () {
             check();
 
@@ -70,7 +71,7 @@ class UpdateDurationDialogState extends State<UpdateDurationDialog> {
               Navigator.of(context).pop();
             }
           },
-          child: Text('Submit'),
+          text: 'Submit',
         ),
       ],
     );
