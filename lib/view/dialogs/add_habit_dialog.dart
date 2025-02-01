@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habitstreaks/controllers/add_habit_dialog_controller.dart';
 import 'package:habitstreaks/main.dart';
+import 'package:habitstreaks/view/dialogs/alert_dialog_base.dart';
 import 'package:habitstreaks/view/utilities/duration_input_formatter.dart';
 import 'package:habitstreaks/view/widgets/buttons.dart';
 
@@ -40,8 +41,8 @@ class AddHabitDialogState extends State<AddHabitDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text('Add habit'),
+    return AlertDialogBase(
+      title: 'Add habit',
       content: Column(
         mainAxisSize: MainAxisSize.min, // To make it wrap content only
         children: [

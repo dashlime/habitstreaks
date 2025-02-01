@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitstreaks/controllers/input_checks.dart';
+import 'package:habitstreaks/view/dialogs/alert_dialog_base.dart';
 import 'package:habitstreaks/view/widgets/buttons.dart';
 import 'package:intl/intl.dart';
 
@@ -32,8 +33,8 @@ class UpdateRepsDialogState extends State<UpdateRepsDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(DateFormat("dd-MM-yyyy").format(widget.date)),
+    return AlertDialogBase(
+      title: DateFormat("dd-MM-yyyy").format(widget.date),
       content: Column(
         mainAxisSize: MainAxisSize.min, // To make it wrap content only
         children: [

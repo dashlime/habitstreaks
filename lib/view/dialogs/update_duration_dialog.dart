@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habitstreaks/controllers/input_checks.dart';
+import 'package:habitstreaks/view/dialogs/alert_dialog_base.dart';
 import 'package:habitstreaks/view/utilities/converters.dart';
 import 'package:habitstreaks/view/utilities/duration_input_formatter.dart';
 import 'package:habitstreaks/view/widgets/buttons.dart';
@@ -34,8 +35,8 @@ class UpdateDurationDialogState extends State<UpdateDurationDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(DateFormat("dd-MM-yyyy").format(widget.date)),
+    return AlertDialogBase(
+      title: DateFormat("dd-MM-yyyy").format(widget.date),
       content: Column(
         mainAxisSize: MainAxisSize.min, // To make it wrap content only
         children: [
