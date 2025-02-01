@@ -4,9 +4,15 @@ import 'package:habitstreaks/services/database.dart';
 import 'package:habitstreaks/controllers/habit_items_utility.dart';
 
 class HabitBoxController {
-  final HabitWithItems habit;
+  HabitWithItems habit;
 
-  const HabitBoxController({required this.habit});
+  HabitBoxController({required this.habit});
+
+  void updateHabit(HabitWithItems newHabit) {
+    if (habit != newHabit) {
+      habit = newHabit;
+    }
+  }
 
   void updateHabitDayItemValue(int newValue, DateTime date, Database db) {
     var item = HabitItemsUtility.getHabitDayItemByDate(habit, date);

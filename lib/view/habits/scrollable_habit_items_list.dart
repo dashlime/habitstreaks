@@ -28,6 +28,8 @@ class ScrollableHabitItemsListState extends State<ScrollableHabitItemsList> {
 
   @override
   Widget build(BuildContext context) {
+    _habitBoxController.updateHabit(widget.habit);
+
     var firstItemDate = HabitItemsUtility.getOldestHabitDayItem(widget.habit.items)?.date ?? DateTime.now();
     var rowsNumber = DateTime.now().difference(firstItemDate).inDays + emptyRowsBeforeHabitCreation;
 
