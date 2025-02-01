@@ -3,6 +3,7 @@ import 'package:habitstreaks/models/habit.dart';
 import 'package:habitstreaks/view/habits/scrollable_habit_items_list.dart';
 import 'package:habitstreaks/view/theme/colors.dart';
 import 'package:habitstreaks/view/utilities/converters.dart';
+import 'package:habitstreaks/view/widgets/card.dart';
 
 class ExtendedHabitBox extends StatelessWidget {
   final HabitWithItems habit;
@@ -21,10 +22,10 @@ class ExtendedHabitBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return UiCard(
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.all(16.0),
+        margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

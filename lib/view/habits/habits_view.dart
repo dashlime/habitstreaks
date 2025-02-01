@@ -64,11 +64,11 @@ class HabitsViewState extends State<HabitsView> {
               tabs: [
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Tab(text: "Overall"),
+                  child: Tab(text: "Overall", height: 35),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Tab(text: "Today"),
+                  child: Tab(text: "Today", height: 35),
                 ),
               ]
             ),
