@@ -8,7 +8,7 @@ class CircularProgressPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final double strokeWidth = 6;
+    const double strokeWidth = 6;
 
     final center = Offset(size.width / 2, size.height / 2);
 

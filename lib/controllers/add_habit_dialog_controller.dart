@@ -76,7 +76,7 @@ class AddHabitDialogController {
       goalType: Value(goalType),
       goalFormatted: Value(goalFormatted),
       frequency: Value(DailyFrequency()),
-      color: Value(HabitColorType.blue));
+      color: const Value(HabitColorType.blue));
 
     return habit;
   }

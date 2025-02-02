@@ -11,7 +11,7 @@ class NotCompletedHabitDayItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(25, 25),
+      size: const Size(25, 25),
       painter: CircularProgressPainter(progress: completedRate),
     );
   }
@@ -28,7 +28,7 @@ class CompletedHabitDayItem extends StatelessWidget {
       alignment: Alignment.center,
       width: 25,
       height: 25,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/ic_validate_habit.png"),
           fit: BoxFit.cover

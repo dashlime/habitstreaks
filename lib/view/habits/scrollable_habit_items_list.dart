@@ -2,23 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:habitstreaks/controllers/habit_box_controller.dart';
 import 'package:habitstreaks/main.dart';
 import 'package:habitstreaks/models/habit.dart';
-import 'package:habitstreaks/controllers/habit_items_utility.dart';
+import 'package:habitstreaks/services/database.dart';
 import 'package:habitstreaks/view/dialogs/update_duration_dialog.dart';
 import 'package:habitstreaks/view/dialogs/update_reps_dialog.dart';
 import 'package:habitstreaks/view/theme/colors.dart';
 import 'package:habitstreaks/view/widgets/habit_day_item_widgets.dart';
 import 'package:intl/intl.dart';
 
-const int emptyRowsBeforeHabitCreation = 30;
-
 class ScrollableHabitItemsListState extends State<ScrollableHabitItemsList> {
-  late final HabitBoxController _habitBoxController;
+  late final HabitBoxController _habitBoxController = HabitBoxController();
+  List<HabitDayItem> _itemsList = List.empty();
 
   @override
   void initState() {
     super.initState();
 
-    _habitBoxController = HabitBoxController(habit: widget.habit);
+    _habitBoxController.itemsListController.stream.listen((data) {
+      setState(() {
+        _itemsList = data;
+      });
+    });
+  }
+
+  @override
+  void didUpdateWidget(covariant ScrollableHabitItemsList oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    _habitBoxController.updateHabit(widget.habit);
   }
 
   @override
@@ -30,32 +40,27 @@ class ScrollableHabitItemsListState extends State<ScrollableHabitItemsList> {
   Widget build(BuildContext context) {
     _habitBoxController.updateHabit(widget.habit);
 
-    var firstItemDate = HabitItemsUtility.getOldestHabitDayItem(widget.habit.items)?.date ?? DateTime.now();
-    var rowsNumber = DateTime.now().difference(firstItemDate).inDays + emptyRowsBeforeHabitCreation;
-
     return SizedBox(
       height: 120,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         reverse: true,
-        itemCount: rowsNumber,
+        itemCount: _itemsList.length,
         itemBuilder: (BuildContext context, int index) {
-          var date = DateTime.now().subtract(Duration(days: index));
-          var score = HabitItemsUtility.getHabitDayItemScore(widget.habit, date);
+          var item = _itemsList.elementAt(index);
+          var score = item.value.toDouble() / widget.habit.habit.goalFormatted.toDouble();
 
           return InkWell(
             onTap: () {
-              var value = HabitItemsUtility.getHabitDayItemByDate(widget.habit, date)?.value ?? 0;
-
               switch (widget.habit.habit.goalType) {
-                case HabitGoalType.boolean : _habitBoxController.updateHabitDayItemValue((score == 1) ? 0 : 1, date, database);
+                case HabitGoalType.boolean : _habitBoxController.updateHabitDayItemValue((item.value == 1) ? 0 : 1, item.date, database);
                 case HabitGoalType.duration :  {
                   showDialog(
                     context: context, 
                     builder: (BuildContext context) { 
                       return UpdateDurationDialog(onValueUpdated: (newValue) { 
-                        _habitBoxController.updateHabitDayItemValue(newValue, date, database);
-                      }, date: date, initialValue: value);
+                        _habitBoxController.updateHabitDayItemValue(newValue, item.date, database);
+                      }, date: item.date, initialValue: item.value);
                     }
                   );
                 }
@@ -64,8 +69,8 @@ class ScrollableHabitItemsListState extends State<ScrollableHabitItemsList> {
                     context: context, 
                     builder: (BuildContext context) { 
                       return UpdateRepsDialog(onValueUpdated: (newValue) { 
-                        _habitBoxController.updateHabitDayItemValue(newValue, date, database);
-                      }, date: date, initialValue: value);
+                        _habitBoxController.updateHabitDayItemValue(newValue, item.date, database);
+                      }, date: item.date, initialValue: item.value);
                     }
                   );
                 }
@@ -75,9 +80,9 @@ class ScrollableHabitItemsListState extends State<ScrollableHabitItemsList> {
               width: 50,
               child: Column(
                 children: [
-                  Text(DateFormat.E().format(date).toUpperCase(), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: UiColors.grayText)),
-                  Text(date.day.toString(), style: Theme.of(context).textTheme.labelMedium),
-                  SizedBox(height: 10),
+                  Text(DateFormat.E().format(item.date).toUpperCase(), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: UiColors.grayText)),
+                  Text(item.date.day.toString(), style: Theme.of(context).textTheme.labelMedium),
+                  const SizedBox(height: 10),
                   if (score < 1)
                     NotCompletedHabitDayItem(completedRate: score, color: widget.habit.habit.color)
                   else

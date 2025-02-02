@@ -25,7 +25,7 @@ class ExtendedHabitBox extends StatelessWidget {
     return UiCard(
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+        margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

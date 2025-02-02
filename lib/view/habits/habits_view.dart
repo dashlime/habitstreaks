@@ -31,7 +31,7 @@ class HabitsViewState extends State<HabitsView> {
   @override
   Widget build(BuildContext context) {
     if (habits.isEmpty) {
-      return Text("You haven't created any habits yet ... Click the \"+\" button below to create an habit");
+      return const Text("You haven't created any habits yet ... Click the \"+\" button below to create an habit");
     } else {
       return DefaultTabController(
         length: 2, 
@@ -42,11 +42,11 @@ class HabitsViewState extends State<HabitsView> {
             TabBar(
               tabAlignment: TabAlignment.start,
               isScrollable: true,
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               indicator: BoxDecoration(
                 color: UiColors.background, // Selected tab background
                 borderRadius: BorderRadius.circular(30),
-                boxShadow: <BoxShadow>[
+                boxShadow: const <BoxShadow>[
                   BoxShadow(
                       color: Color(0x0F000000),
                       blurRadius: 4,
@@ -56,32 +56,33 @@ class HabitsViewState extends State<HabitsView> {
                 ],
               ),
               indicatorSize: TabBarIndicatorSize.label,
-              overlayColor: WidgetStatePropertyAll(Colors.transparent),
+              overlayColor: const WidgetStatePropertyAll(Colors.transparent),
               dividerHeight: 0,
-              labelPadding: EdgeInsets.symmetric(horizontal: 8),
+              labelPadding: const EdgeInsets.symmetric(horizontal: 8),
               labelColor: UiColors.text, // Selected text color
               unselectedLabelColor: UiColors.grayText, // Unselected text color
               tabs: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Tab(text: "Overall", height: 35),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Tab(text: "Overall", height: 35),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Tab(text: "Today", height: 35),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Tab(text: "Today", height: 35),
                 ),
               ]
             ),
             Expanded(
               child: TabBarView(
-                physics: NeverScrollableScrollPhysics(), 
+                physics: const NeverScrollableScrollPhysics(), 
                 children: [
-                  ListView(
-                    children: [
-                      for (var habit in habits) ExtendedHabitBox(habit: habit)
-                    ]
+                  ListView.builder(
+                    itemCount: habits.length,
+                    itemBuilder: (context, index) {
+                      return ExtendedHabitBox(habit: habits.elementAt(index));
+                    },
                   ),
-                  Text("Today view - WIP")
+                  const Text("Today view - WIP")
                 ]
               )
             )

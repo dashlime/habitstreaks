@@ -54,11 +54,11 @@ class AddHabitDialogState extends State<AddHabitDialog> {
               errorText: !controller.isNameValid ? 'Enter a valid name' : null
             ),
           ),
-          SizedBox(height: 20), // Spacer between TextField and Radio buttons
+          const SizedBox(height: 20), // Spacer between TextField and Radio buttons
           
-          Text("Goal type : "),
+          const Text("Goal type : "),
           ListTile(
-            title: Text('Yes / No'),
+            title: const Text('Yes / No'),
             leading: Radio<int>(
               value: 1,
               groupValue: controller.selectedRadio,
@@ -70,7 +70,7 @@ class AddHabitDialogState extends State<AddHabitDialog> {
             ),
           ),
           ListTile(
-            title: Text('Duration'),
+            title: const Text('Duration'),
             leading: Radio<int>(
               value: 2,
               groupValue: controller.selectedRadio,
@@ -95,7 +95,7 @@ class AddHabitDialogState extends State<AddHabitDialog> {
               ),
             ),
           ListTile(
-            title: Text('Number of reps'),
+            title: const Text('Number of reps'),
             leading: Radio<int>(
               value: 3,
               groupValue: controller.selectedRadio,

@@ -10,16 +10,16 @@ class UiCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return 
     Padding(
-      padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       child: DropShadowEffect(
-        offset: Offset(1, 1),
+        offset: const Offset(1, 1),
         blur: 4,
         spread: 3,
         borderRadius: 20,
         alpha: 12,
         child: Card(
-          margin: EdgeInsets.all(0),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
+          margin: const EdgeInsets.all(0),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
           elevation: 0,
           child: child,
         ),

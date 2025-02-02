@@ -10,9 +10,9 @@ class AlertDialogBase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      titlePadding: EdgeInsets.all(15),
-      contentPadding: EdgeInsets.all(15),
-      actionsPadding: EdgeInsets.all(15),
+      titlePadding: const EdgeInsets.all(15),
+      contentPadding: const EdgeInsets.all(15),
+      actionsPadding: const EdgeInsets.all(15),
       actionsAlignment: MainAxisAlignment.spaceBetween,
       title: Center(child: Text(title, style: Theme.of(context).textTheme.titleSmall)),
       content: content,

@@ -11,7 +11,7 @@ class GradientFilledButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: blueGradient,
         borderRadius: BorderRadius.all(Radius.circular(15))
       ),
@@ -19,10 +19,10 @@ class GradientFilledButton extends StatelessWidget {
         onPressed: onPressed, 
         style: FilledButton.styleFrom(
           backgroundColor: Colors.transparent,
-          overlayColor: Color(0x01000000),
+          overlayColor: UiColors.overlay,
           shadowColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15)))
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15)))
         ),
         child: Text(text, style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.white))
       ),
@@ -44,11 +44,11 @@ class GradientOutlinedButton extends StatelessWidget {
         onPressed: onPressed, 
         style: OutlinedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          overlayColor: Color(0x01000000),
+          overlayColor: UiColors.overlay,
           shadowColor: Colors.transparent,
-          side: BorderSide(width: 3, color: UiColors.blue50),
+          side: const BorderSide(width: 3, color: UiColors.blue50),
           surfaceTintColor: Colors.transparent,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15)))
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15)))
         ),
         child: Text(text, style: Theme.of(context).textTheme.labelLarge?.copyWith(color: UiColors.blue50))
       ),

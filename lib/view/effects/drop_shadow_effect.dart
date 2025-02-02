@@ -17,7 +17,7 @@ class DropShadowEffect extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-              color: Color(0x00000000).withAlpha(alpha),
+              color: Colors.black.withAlpha(alpha),
               blurRadius: blur,
               spreadRadius: spread,
               offset: offset

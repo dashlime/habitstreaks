@@ -16,6 +16,8 @@ class UiColors {
 
   static const Color text = Color(0xFF1A1B21);
   static const Color grayText = Color(0x26000000);
+
+  static const Color overlay = Color(0x01000000);
 }
 
 const colorScheme = ColorScheme(

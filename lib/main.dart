@@ -14,7 +14,7 @@ late Database database;
 void main() {
   database = Database();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -29,11 +29,11 @@ class MyApp extends StatelessWidget {
           fontFamily: "Rubik",
           textTheme: textTheme,
           colorScheme: colorScheme,
-          inputDecorationTheme: InputDecorationTheme(
+          inputDecorationTheme: const InputDecorationTheme(
             border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
           )
         ),
-        home: HomePage(),
+        home: const HomePage(),
       );
   }
 }
@@ -50,7 +50,7 @@ class HomePageState extends State<HomePage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AddHabitDialog();
+        return const AddHabitDialog();
       },
     );
   }
@@ -113,7 +113,7 @@ class HomePageState extends State<HomePage> {
                   'HabitStreaks',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   DateFormat.EEEE().format(DateTime.now()),
                   style: Theme.of(context).textTheme.labelSmall,
@@ -138,12 +138,12 @@ class HomePageState extends State<HomePage> {
             padding: EdgeInsets.fromLTRB(28, 5, 28, 5),
             child: Divider(),
           ),
-          NavigationDrawerDestination(
-            icon: const Icon(UiIcons.icStarOutlined),
+          const NavigationDrawerDestination(
+            icon: Icon(UiIcons.icStarOutlined),
             label: Text("Rate the app"),
           ),
-          NavigationDrawerDestination(
-            icon: const Icon(Icons.share_outlined),
+          const NavigationDrawerDestination(
+            icon: Icon(Icons.share_outlined),
             label: Text("Share the app"),
           ),
         ],
