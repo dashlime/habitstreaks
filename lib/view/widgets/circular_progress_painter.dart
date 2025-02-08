@@ -3,13 +3,12 @@ import 'package:habitstreaks/view/theme/colors.dart';
 
 class CircularProgressPainter extends CustomPainter {
   final double progress;
+  final double strokeWidth;
 
-  const CircularProgressPainter({required this.progress});
+  const CircularProgressPainter({required this.progress, this.strokeWidth = 6});
 
   @override
   void paint(Canvas canvas, Size size) {
-    const double strokeWidth = 6;
-
     final center = Offset(size.width / 2, size.height / 2);
 
     final Paint circlePaint = Paint()

@@ -7,6 +7,7 @@ import 'package:habitstreaks/view/stats/stats_view.dart';
 import 'package:habitstreaks/view/theme/colors.dart';
 import 'package:habitstreaks/view/theme/custom_icons.dart';
 import 'package:habitstreaks/view/theme/fonts.dart';
+import 'package:habitstreaks/view/widgets/buttons.dart';
 import 'package:intl/intl.dart';
 
 late Database database;
@@ -41,11 +42,6 @@ class MyApp extends StatelessWidget {
 class HomePageState extends State<HomePage> {
   int _selectedBottomNavIndex = 0;
 
-  final List<Widget> screens = const [
-    HabitsView(),
-    StatsView()
-  ];
-
   void _showAddHabitDialog() {
     showDialog(
       context: context,
@@ -57,6 +53,17 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> screens = [
+      HabitsView(
+        onNavigateToStats: (value) {
+          setState(() {
+            _selectedBottomNavIndex = 1;
+          });
+        },
+      ),
+      StatsView()
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text((_selectedBottomNavIndex == 0) ? 'Habits' : 'Stats', style: Theme.of(context).textTheme.titleLarge),
@@ -72,7 +79,7 @@ class HomePageState extends State<HomePage> {
         ),
       ),
       body: screens.elementAt(_selectedBottomNavIndex),
-      floatingActionButton: (_selectedBottomNavIndex == 0) ? FloatingActionButton(
+      floatingActionButton: (_selectedBottomNavIndex == 0) ? GradientFAB(
         onPressed: _showAddHabitDialog,
         child: const Icon(Icons.add),
       ) : null,

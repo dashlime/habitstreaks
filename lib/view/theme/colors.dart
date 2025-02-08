@@ -15,7 +15,7 @@ class UiColors {
   static const Color outline = Color(0xFF767680);
 
   static const Color text = Color(0xFF1A1B21);
-  static const Color grayText = Color(0x26000000);
+  static const Color grayText = Color(0x36000000);
 
   static const Color overlay = Color(0x01000000);
 }
@@ -37,6 +37,7 @@ const colorScheme = ColorScheme(
   outlineVariant: Color(0xFFc4c6d0),
   surface: UiColors.background,
   onSurface: UiColors.text,
+  onSurfaceVariant: Color(0xFF49454F),
   scrim: Colors.black
 );
 

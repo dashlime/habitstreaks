@@ -55,3 +55,27 @@ class GradientOutlinedButton extends StatelessWidget {
     );
   }
 }
+
+class GradientFAB extends StatelessWidget {
+  final Widget child;
+  final VoidCallback onPressed;
+
+  const GradientFAB({super.key, required this.child, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: onPressed, 
+      foregroundColor: Colors.white,
+      child: Container(
+        width: 56,
+        height: 56,
+        decoration: const BoxDecoration(
+          gradient: blueGradient,
+          borderRadius: BorderRadius.all(Radius.circular(16))
+        ),
+        child: child
+      ),
+    );
+  }
+}
